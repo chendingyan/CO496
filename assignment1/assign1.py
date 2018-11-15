@@ -2,10 +2,12 @@ import autograd.numpy as np
 from autograd import grad
 import matplotlib.pyplot as plt
 
+
 def grad_f1(x):
+    x = np.array([[x[0]], [x[1]]])
     matrix = np.array([[8, -2], [-2, 8]])
     matrix_1 = np.array([[1], [1]])
-    return np.matmul(matrix, x)- matrix_1
+    return (np.matmul(matrix, x)- matrix_1)
 
 def grad_f2(x):
     a = np.array([[1],[0]])
@@ -28,15 +30,15 @@ def f3(x):
 
 
 x = np.array([[1], [-1]], dtype = float)
-print(grad_f1(x))
-print(grad_f2(x))
-
+# print(grad_f1(x))
+# print(grad_f2(x))
+#
 # gradient_f2 = grad(f2)
-# print(gradient_f2(np.array([[1],[1]])))
+# print(gradient_f2(np.array([[1],[-1]])))
 
-grad_f3 = grad(f3)
-# print(gradient_f3(x))
-print(grad_f3(x))
+# grad_f3 = grad(f3)
+# print(f3(x))
+# print(grad_f3(x))
 
 
 
@@ -68,20 +70,21 @@ def gradient_descent(step_size, iterations, functions, start_point):
 
 
 
-fig = plt.subplot(211)
+# fig = plt.subplot(211)
+fig = plt.figure(1)
 X, Y, Z = plot_contour(0.025, -1, 1.5, -2, 0, f2)
 CS = plt.contour(X, Y, Z)
 x_points, y_points = gradient_descent(0.1, 50, grad_f2, x)
 plt.scatter(x_points, y_points)
-# # ax.clabel(CS, inline=1, fontsize=10)
-fig.set_title('gradient descent of f2')
-x = np.array([[1], [-1]], dtype = float)
-print(x)
-fig2 = plt.subplot(212)
-X, Y, Z = plot_contour(0.025, -0.5, 1.5, -2, 1, f3)
-CS = plt.contour(X, Y, Z)
-x_points, y_points = gradient_descent(0.1, 50, grad_f3, x)
-plt.scatter(x_points, y_points)
-fig2.set_title('gradient descent of f3')
+# # # ax.clabel(CS, inline=1, fontsize=10)
+
+# x = np.array([[1], [-1]], dtype = float)
+# print(x)
+# fig2 = plt.subplot(212)
+# X, Y, Z = plot_contour(0.025, -0.5, 1.5, -2, 1, f3)
+# CS = plt.contour(X, Y, Z)
+# x_points, y_points = gradient_descent(0.1, 50, grad_f3, x)
+# plt.scatter(x_points, y_points)
+# fig2.set_title('gradient descent of f3')
 plt.show()
 
